@@ -9,9 +9,11 @@ import android.view.View;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class PeliculasActivity extends AppCompatActivity {
     PeliculasListAdapter adapter = new PeliculasListAdapter();
@@ -21,12 +23,13 @@ public class PeliculasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peliculas);
 
-        JsonArrayRequest moviesRequest = new JsonArrayRequest("", new Response.Listener<JSONArray>() {
+        JsonObjectRequest moviesRequest = new JsonObjectRequest("http://www.moviemania.com/json.json", null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 try {
-                    for (int i = 0; i < response.length(); i++) {
-                        Pelicula.peliculas.add(response.getJSONObject(i));
+                    JSONArray peliculas = response.getJSONArray("Movies");
+                    for (int i = 0; i < peliculas.length(); i++) {
+                        Pelicula.peliculas.add(peliculas.getJSONObject(i));
                         adapter.notifyItemInserted(i);
                     }
                 } catch (JSONException exception) {
