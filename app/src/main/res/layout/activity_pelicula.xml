@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_pelicula"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.universidad.moviemania.PeliculaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <com.android.volley.toolbox.NetworkImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:srcCompat="@mipmap/ic_launcher"
+                android:id="@+id/imagen"
+                android:scaleType="center" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/estrellas"
+                    android:numStars="5"
+                    android:layout_gravity="center_horizontal"
+                    android:isIndicator="true" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/titulo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/directores" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/estudios" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/publicacion"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/duracion"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edad"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+                <Button
+                    android:text="Trailer"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/trailer"
+                    style="@style/Widget.AppCompat.Button.Borderless" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sinopsis" />
+            </LinearLayout>
+
+            <TextView
+                android:text="Teatros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/titulo_teatros"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:fontFamily="sans-serif" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>
