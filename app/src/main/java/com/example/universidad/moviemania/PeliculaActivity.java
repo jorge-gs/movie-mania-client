@@ -19,6 +19,7 @@ public class PeliculaActivity extends AppCompatActivity {
     TextView titulo;
     TextView directores;
     TextView estudios;
+    TextView generos;
     TextView publicacion;
     TextView duracion;
     RatingBar estrellas;
@@ -36,6 +37,7 @@ public class PeliculaActivity extends AppCompatActivity {
         this.titulo = (TextView) findViewById(R.id.titulo);
         this.directores = (TextView) findViewById(R.id.directores);
         this.estudios = (TextView) findViewById(R.id.estudios);
+        this.generos = (TextView) findViewById(R.id.generos);
         this.publicacion = (TextView) findViewById(R.id.publicacion);
         this.duracion = (TextView) findViewById(R.id.duracion);
         this.estrellas = (RatingBar) findViewById(R.id.estrellas);
@@ -60,8 +62,15 @@ public class PeliculaActivity extends AppCompatActivity {
                 String studio = studios.getString(i);
                 estudiosTexto += (i == 0 ? "" : ", ") + studio;
             }
+            String generosTexto = "";
+            JSONArray genres = pelicula.getJSONArray("genres");
+            for (int i = 0; i < genres.length(); i++) {
+                String genero = genres.getString(i);
+                generosTexto += (i == 0 ? "" : ", ") + genero;
+            }
             this.directores.setText(directoresTexto);
             this.estudios.setText(estudiosTexto);
+            this.generos.setText(generosTexto);
             this.publicacion.setText(this.pelicula.getString("release_date"));
             this.duracion.setText(this.pelicula.getString("length"));
             this.estrellas.setRating(this.pelicula.getInt("rating"));
