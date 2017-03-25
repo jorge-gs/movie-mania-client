@@ -1,5 +1,7 @@
 package com.example.universidad.moviemania;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +26,7 @@ public class PeliculasListAdapter extends RecyclerView.Adapter<PeliculasListAdap
         public ViewHolder (View view) {
             super(view);
 
-            this.textView = (TextView) view.findViewById(R.id.image_view);
+            this.textView = (TextView) view.findViewById(R.id.text_view);
             this.imageView = (NetworkImageView) view.findViewById(R.id.image_view);
         }
     }
@@ -37,11 +39,11 @@ public class PeliculasListAdapter extends RecyclerView.Adapter<PeliculasListAdap
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
         try {
             JSONObject jsonObject = Pelicula.peliculas.get(position);
-            String imageURL = jsonObject.getString("");
-            String title = jsonObject.getString("");
+            String imageURL = jsonObject.getString("photo");
+            String title = jsonObject.getString("title");
 
             holder.imageView.setImageUrl(imageURL, VolleySingleton.getInstance(holder.itemView.getContext()).getImageLoader());
             holder.textView.setText(title);
@@ -49,7 +51,9 @@ public class PeliculasListAdapter extends RecyclerView.Adapter<PeliculasListAdap
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    Intent intent = new Intent(holder.itemView.getContext(), PeliculaActivity.class);
+                    intent.putExtra("Pelicula", Pelicula.peliculas.get(position).toString());
+                    holder.itemView.getContext().startActivity(intent);
                 }
             });
         } catch (JSONException exception) {

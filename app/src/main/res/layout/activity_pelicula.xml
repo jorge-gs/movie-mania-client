@@ -23,12 +23,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/image" />
+                android:id="@+id/imagen"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
+                <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/estrellas"
+                    android:numStars="5"
+                    android:layout_gravity="center_horizontal"
+                    android:isIndicator="true" />
 
                 <TextView
                     android:text="TextView"
@@ -36,6 +45,24 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/titulo"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/directores" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/estudios" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/generos" />
 
                 <TextView
                     android:text="TextView"
@@ -50,15 +77,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/duracion"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                <RatingBar
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/estrellas"
-                    android:numStars="5"
-                    android:layout_gravity="center_horizontal"
-                    android:isIndicator="true" />
-
+              
                 <TextView
                     android:text="TextView"
                     android:layout_width="match_parent"
@@ -93,9 +112,10 @@
                 android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal" />
+                    android:orientation="horizontal"
+                    android:id="@+id/teatros" />
             </HorizontalScrollView>
         </LinearLayout>
     </ScrollView>

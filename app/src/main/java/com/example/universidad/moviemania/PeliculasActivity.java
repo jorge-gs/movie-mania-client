@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.android.volley.Response;
@@ -27,19 +28,20 @@ public class PeliculasActivity extends AppCompatActivity {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    JSONArray peliculas = response.getJSONArray("Movies");
+                    JSONArray peliculas = response.getJSONArray("movies");
+
                     for (int i = 0; i < peliculas.length(); i++) {
                         Pelicula.peliculas.add(peliculas.getJSONObject(i));
                         adapter.notifyItemInserted(i);
                     }
                 } catch (JSONException exception) {
-
+                    exception.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Log.d("PeliculasActivity", error.getMessage());
             }
         });
         VolleySingleton.getInstance(this).addToRequestQueue(moviesRequest);
