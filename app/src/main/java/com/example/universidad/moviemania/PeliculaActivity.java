@@ -1,8 +1,11 @@
 package com.example.universidad.moviemania;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ public class PeliculaActivity extends AppCompatActivity {
     TextView edad;
     Button trailer;
     TextView sinopsis;
+    LinearLayout teatros;
 
 
     @Override
@@ -44,6 +48,7 @@ public class PeliculaActivity extends AppCompatActivity {
         this.edad = (TextView) findViewById(R.id.edad);
         this.trailer = (Button) findViewById(R.id.trailer);
         this.sinopsis = (TextView) findViewById(R.id.sinopsis);
+        this.teatros = (LinearLayout) findViewById(R.id.teatros);
 
         try {
             this.pelicula = new JSONObject(getIntent().getStringExtra("Pelicula"));
@@ -77,6 +82,22 @@ public class PeliculaActivity extends AppCompatActivity {
             this.edad.setText(this.pelicula.getString("classification"));
 
             this.sinopsis.setText(this.pelicula.getString("synopsis"));
+
+            JSONArray theaters = this.pelicula.getJSONArray("theaters");
+            for (int i  = 0; i < theaters.length(); i++) {
+                final JSONObject teatro = theaters.getJSONObject(i);
+                TextView textoTeatro = new TextView(this);
+                textoTeatro.setText(teatro.getString("name"));
+                textoTeatro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PeliculaActivity.this, PeliculasActivity.class);
+                        intent.putExtra("Teatro", teatro.toString());
+                        startActivity(intent);
+                    }
+                });
+                this.teatros.addView(textoTeatro, i);
+            }
         } catch (JSONException exception) {
 
         }

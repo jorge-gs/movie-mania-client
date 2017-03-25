@@ -40,7 +40,7 @@ public class PeliculasActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
+                Log.d("PeliculasActivity", error.getMessage());
             }
         });
         VolleySingleton.getInstance(this).addToRequestQueue(moviesRequest);
