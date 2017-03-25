@@ -52,7 +52,8 @@ public class PeliculaActivity extends AppCompatActivity {
         try {
             this.pelicula = new JSONObject(getIntent().getStringExtra("Pelicula"));
 
-            this.imagen.setImageUrl(this.pelicula.getString("photo"), VolleySingleton.getInstance(this).getImageLoader());
+            final String imagenURL = this.pelicula.getString("photo");
+            this.imagen.setImageUrl(imagenURL, VolleySingleton.getInstance(this).getImageLoader());
             this.titulo.setText(this.pelicula.getString("title"));
             String directoresTexto = "";
             JSONArray directors = pelicula.getJSONArray("directors");
@@ -90,8 +91,12 @@ public class PeliculaActivity extends AppCompatActivity {
                 textoTeatro.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(PeliculaActivity.this, PeliculasActivity.class);
+                        try {
+                            PresentacionListAdapter.presentaciones = teatro.getJSONArray("screenings");
+                        } catch (JSONException exception) { }
+                        Intent intent = new Intent(PeliculaActivity.this, TeatroActivity.class);
                         intent.putExtra("Teatro", teatro.toString());
+                        intent.putExtra("Imagen", imagenURL);
                         startActivity(intent);
                     }
                 });

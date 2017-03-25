@@ -24,6 +24,7 @@ public class PeliculasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peliculas);
 
+        Pelicula.peliculas.clear();
         JsonObjectRequest moviesRequest = new JsonObjectRequest("http://www.moviemania.com/json.json", null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -45,11 +46,6 @@ public class PeliculasActivity extends AppCompatActivity {
             }
         });
         VolleySingleton.getInstance(this).addToRequestQueue(moviesRequest);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         View view = findViewById(R.id.peliculas_list);
         if (view instanceof RecyclerView) {
@@ -57,5 +53,11 @@ public class PeliculasActivity extends AppCompatActivity {
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(this.adapter);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
     }
 }
