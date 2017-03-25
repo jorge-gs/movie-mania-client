@@ -17,10 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
-        <activity android:name=".PeliculaActivity">
-
-        </activity>
+        <activity android:name=".PeliculaActivity"></activity>
+        <activity android:name=".TeatroActivity"></activity>
     </application>
 
 </manifest>
