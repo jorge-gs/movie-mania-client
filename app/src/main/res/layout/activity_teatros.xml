@@ -44,14 +44,25 @@
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/link_teatro"
-                android:autoLink="web"/>
+                android:id="@+id/direccion_teatro" />
 
             <TextView
                 android:text="TextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/direccion_teatro" />
+                android:id="@+id/link_teatro"
+                android:autoLink="web"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:text="Presentaciones"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"

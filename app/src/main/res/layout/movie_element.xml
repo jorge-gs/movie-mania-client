@@ -16,7 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:background="@mipmap/ic_launcher" />
+        android:scaleType="centerCrop" />
 
     <TextView
         android:text="TextView"

@@ -38,9 +38,9 @@ public class TeatroActivity extends AppCompatActivity {
 
             this.imagen.setImageUrl(getIntent().getStringExtra("Imagen"), VolleySingleton.getInstance(this).getImageLoader());
             this.nombre.setText(this.teatro.getString("name"));
-            this.horario.setText(this.teatro.getString("opens") + " - " + this.teatro.getString("closes"));
-            this.direccion.setText(this.teatro.getString("address"));
-            this.link.setText(this.teatro.getString("link"));
+            this.horario.setText("Abierto " + this.teatro.getString("opens") + " - " + this.teatro.getString("closes"));
+            this.direccion.setText("Dirección: " + this.teatro.getString("address"));
+            this.link.setText("Web: " + this.teatro.getString("link"));
         } catch (JSONException exception) {
         }
 

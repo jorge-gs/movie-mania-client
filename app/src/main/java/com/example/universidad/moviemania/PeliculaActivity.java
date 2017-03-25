@@ -1,9 +1,12 @@
 package com.example.universidad.moviemania;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -30,6 +33,8 @@ public class PeliculaActivity extends AppCompatActivity {
     Button trailer;
     TextView sinopsis;
     LinearLayout teatros;
+
+    String urlTrailer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,13 +78,14 @@ public class PeliculaActivity extends AppCompatActivity {
                 String genero = genres.getString(i);
                 generosTexto += (i == 0 ? "" : ", ") + genero;
             }
-            this.directores.setText(directoresTexto);
-            this.estudios.setText(estudiosTexto);
-            this.generos.setText(generosTexto);
-            this.publicacion.setText(this.pelicula.getString("release_date"));
-            this.duracion.setText(this.pelicula.getString("length"));
+            this.directores.setText("Dirigida por: " + directoresTexto);
+            this.estudios.setText("Producida por: " + estudiosTexto);
+            this.generos.setText("Generos: " + generosTexto);
+            this.publicacion.setText("Publicada: " + this.pelicula.getString("release_date"));
+            this.duracion.setText("Duración: " + this.pelicula.getString("length"));
             this.estrellas.setRating(this.pelicula.getInt("rating"));
-            this.edad.setText(this.pelicula.getString("classification"));
+            this.edad.setText("Clasificación: " + this.pelicula.getString("classification") + "+");
+            this.urlTrailer = this.pelicula.getString("trailer");
 
             this.sinopsis.setText(this.pelicula.getString("synopsis"));
 
@@ -104,6 +110,14 @@ public class PeliculaActivity extends AppCompatActivity {
             }
         } catch (JSONException exception) {
 
+        }
+    }
+
+    public void onTrailer(View view) {
+        if (URLUtil.isValidUrl(this.urlTrailer)) {
+            Uri uri = Uri.parse(this.urlTrailer);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 }
