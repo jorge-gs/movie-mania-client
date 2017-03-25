@@ -29,6 +29,7 @@ public class PeliculasActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     JSONArray peliculas = response.getJSONArray("movies");
+
                     for (int i = 0; i < peliculas.length(); i++) {
                         Pelicula.peliculas.add(peliculas.getJSONObject(i));
                         adapter.notifyItemInserted(i);

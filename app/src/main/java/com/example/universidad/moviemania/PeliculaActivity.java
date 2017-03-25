@@ -31,12 +31,11 @@ public class PeliculaActivity extends AppCompatActivity {
     TextView sinopsis;
     LinearLayout teatros;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pelicula);
-
+      
         this.imagen = (NetworkImageView) findViewById(R.id.imagen);
         this.titulo = (TextView) findViewById(R.id.titulo);
         this.directores = (TextView) findViewById(R.id.directores);
